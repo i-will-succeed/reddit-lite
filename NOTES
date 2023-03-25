@@ -8,11 +8,34 @@ Setup:
   pip3 install beautifulsoup4
   pip3 freeze > requirements.txt
 
-
 First, let's get a static html file from reddit
+
+We have to spoof a web browser and not let reddit think we're a bot
+(curl)
+
+curl -A "Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.2 Mobile/15E148 Safari/604.1" 'https://old.reddit.com/r/ModernWarfareII/search?q=sniper&restrict_sr=on' > index.html
+
 
 curl 'https://old.reddit.com/r/ModernWarfareII/search?q=sniper&restrict_sr=on' > index.html
 
 
-Second, load index.html in Python with BeautifulSoup
+Second, load index.html in Python with BeautifulSoup, and then make a
+pretty version of the file.
+
+
+Tmux
+
+Installed w3m
+
+  bookmark page            esc, a
+  show bookmarks           esc, b
+  jump links               TAB and SHIFT-TAB
+  go back                  B
+  open page in firefox     M
+
+echo $PATH | tr ':' '\n'
+
+Read beautifulsoup doc and pretty-print the index.html we downloaded
+
+
 
