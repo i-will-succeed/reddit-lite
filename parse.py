@@ -14,8 +14,18 @@ print(soup.title.string)
 
 # title is in <header class="search-result-header">
 
+
 for item in soup.find_all('div', class_="search-result"):
     print('-----------------------------')
     title = item.find_all(class_="search-title")[0].string
-    print(title)
-    #print(item)
+ 
+    score = item.find_all(class_="search-score")[0].string
+    time = item.find_all('time')[0].string
+    author = item.find_all(class_='author')[0].string
+    comments = item.find_all(class_='search-comments')[0].string
+    link = item.find_all(class_="search-title")[0]['href']
+ 
+
+    print(f'Title: {title.strip()}\n\nAuthor: {author.strip()}\n\nComments: {comments.strip()}\n\nScore: {score.strip()}\n\nTime: {time.strip()}\n\nLink: {link}\n\n')
+
+
