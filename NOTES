@@ -4,7 +4,9 @@
 Setup:
 
   python -mvenv .venv
+  source .venv/bin/activtate
   pip3 install beautifulsoup4
+  pip3 freeze > requirements.txt
 
 
 First, let's get a static html file from reddit
