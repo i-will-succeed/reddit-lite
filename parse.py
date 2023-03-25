@@ -14,7 +14,8 @@ print(soup.title.string)
 
 # title is in <header class="search-result-header">
 
-
-result = soup.find_all('div', class_="search-result")
-
-print(result)
+for item in soup.find_all('div', class_="search-result"):
+    print('-----------------------------')
+    title = item.find_all(class_="search-title")[0].string
+    print(title)
+    #print(item)
