@@ -1,16 +1,13 @@
 import requests
 import sys
 from bs4 import BeautifulSoup
+import subprocess
 
 
-headers = {
-    'User-Agent': "Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.2 Mobile/15E148 Safari/604.1"
-}
+cmd = ['curl', '-s', '-A',  "Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.2 Mobile/15E148 Safari/604.1", 'https://old.reddit.com/r/ModernWarfareII/search?q=sniper&restrict_sr=on']
 
+html_file = subprocess.check_output(cmd)
 
-reddit_url = sys.argv[1]
-response = requests.get(reddit_url, {})
-html_file = response.text
 soup = BeautifulSoup(html_file, 'html.parser')
 
 # Print Title
