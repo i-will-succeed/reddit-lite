@@ -1,0 +1,21 @@
+#!/bin/bash
+
+if (( $# > 0 ))
+then
+  if [[ "$1" =~ (youtube|yt) ]]
+  then
+      q="youtube $@"
+      extra_args="&iax=videos"
+  else 
+      q="$@"
+  fi
+  args="q=$(echo "$q" | tr ' ' '+')$extra_args"
+  echo "$args"
+  w3m -no-cookie "https://duckduckgo.com/lite?$args"  
+else
+  w3m -no-cookie
+fi
+
+# tips
+# w3 '!oldreddit onebag usb adapters'
+
