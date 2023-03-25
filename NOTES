@@ -1,0 +1,16 @@
+
+
+
+Setup:
+
+  python -mvenv .venv
+  pip3 install beautifulsoup4
+
+
+First, let's get a static html file from reddit
+
+curl 'https://old.reddit.com/r/ModernWarfareII/search?q=sniper&restrict_sr=on' > index.html
+
+
+Second, load index.html in Python with BeautifulSoup
+
