@@ -2,9 +2,18 @@ import requests
 import sys
 from bs4 import BeautifulSoup
 import subprocess
+import argparse
 
-reddit_name = sys.argv[1]
-reddit_search = sys.argv[2].replace(' ', '+')
+# see docs for argparse at https://docs.python.org/3/library/argparse.html
+
+parser = argparse.ArgumentParser(description='Search a subreddit')
+parser.add_argument('subreddit', help='Subreddit name')
+parser.add_argument('search_query', help='Search query')
+
+args = parser.parse_args()
+
+reddit_search = args.search_query.replace(' ', '+')
+reddit_name = args.subreddit
 reddit_link = f"https://old.reddit.com/r/{reddit_name}/search?q={reddit_search}&restrict_sr=on"
 
 headers = {
