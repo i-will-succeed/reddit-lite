@@ -3,11 +3,12 @@ import sys
 from bs4 import BeautifulSoup
 import subprocess
 
+reddit_name = sys.argv[1]
+reddit_link = f"https://old.reddit.com/r/{reddit_name}"
 
-cmd = ['curl', '-s', '-A',  "Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.2 Mobile/15E148 Safari/604.1", 'https://old.reddit.com/r/ModernWarfareII/search?q=sniper&restrict_sr=on']
+cmd = ['curl', '-s', "-L", '-A',  "Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.2 Mobile/15E148 Safari/604.1", reddit_link]
 
 html_file = subprocess.check_output(cmd)
-
 soup = BeautifulSoup(html_file, 'html.parser')
 
 # Print Title
@@ -21,7 +22,6 @@ print(soup.title.string)
 
 # title is in <header class="search-result-header">
 
-
 for item in soup.find_all('div', class_="search-result"):
     print('-----------------------------')
     title = item.find_all(class_="search-title")[0].string
@@ -33,6 +33,5 @@ for item in soup.find_all('div', class_="search-result"):
     link = item.find_all(class_="search-title")[0]['href']
  
 
-    print(f'Title: {title.strip()}\n\nAuthor: {author.strip()}\n\nComments: {comments.strip()}\n\nScore: {score.strip()}\n\nTime: {time.strip()}\n\nLink: {link}\n\n')
-
+    print(f'Title: {title.strip()}\n\nAuthor: {author.strip()}\nComments: {comments.strip()}\nScore: {score.strip()}\nTime: {time.strip()}\n\nLink: {link}\n')
 
